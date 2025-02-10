@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    font-family: 'Oswald', sans-serif
+}
+
+.login-wrapper {
+    /* background-image: url('https://static.vecteezy.com/system/resources/previews/016/623/673/non_2x/modern-background-with-blue-gradient-free-vector.jpg');  */
+    background-color: #F5F6FA;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    width: 100vw; 
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    overflow: hidden; 
+}
+
+.ant-menu {
+    border: none !important;
+    background-color: transparent;
+    font-weight: medium;
+}
+
+.sidebar-menu .ant-menu-item-selected {
+    background-color: #D7FFEF !important; 
+    color: #07DA83;
+    font-weight: medium;
+  }
+
+.ant-menu-sub{
+    background-color: transparent !important ;
+}
+
+.ant-upload-list-picture-circle{
+    justify-content: center;
+}
+
+:where(.css-dev-only-do-not-override-apn68).ant-upload-wrapper.ant-upload-picture-circle-wrapper .ant-upload.ant-upload-select{
+    width: 150px;
+    height: 150px;
+}
+
+:where(.css-dev-only-do-not-override-apn68).ant-upload-wrapper.ant-upload-picture-circle-wrapper .ant-upload-list.ant-upload-list-picture-circle .ant-upload-list-item-container {
+    width: 40%;
+    height: 40%;
+}
+
+.ant-table{
+    width: 100%;
+    overflow-x: hidden;
+}
+
+:where(.css-dev-only-do-not-override-apn68).ant-table-wrapper .ant-table-thead >tr>th{
+    background-color: #E1E5EA;
+}

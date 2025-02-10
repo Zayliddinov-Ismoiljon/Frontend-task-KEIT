@@ -1,0 +1,15 @@
+.custom-pagination{
+  background: #fff;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.custom-pagination .ant-pagination-item-active {
+  background-color: #07DA83; 
+  color: white !important;
+  border: none;
+}
+
+.custom-pagination .ant-pagination-item:hover {
+  background-color: #d1d5db; 
+}
