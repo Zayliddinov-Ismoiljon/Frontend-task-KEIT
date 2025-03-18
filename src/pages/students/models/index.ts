@@ -1,7 +1,8 @@
 export type IBarbers = {
-  firstName: string;
-  lastName: string
-  psJShR: string
-  psNumer: string
-  psSerea: string
+  first_name: string;
+  last_name: string
+  middle_name: string
+  email: string
+  phone: string
+  gender: string
 }

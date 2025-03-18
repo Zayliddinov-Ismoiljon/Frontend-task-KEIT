@@ -1,10 +1,10 @@
 import store from "../store"
 
 const checkPermession = (name:string) => {
-    const auth = store.getState().about_me
+    const auth = store.getState().user.user
     
-    if(Array.isArray(auth.about_me.permission) && auth.about_me.permission.length > 0){
-        return auth.about_me.permission.some((perm: { action: string }) => perm.action === name);
+    if(Array.isArray(auth.permissions) && auth.permissions.length > 0){
+        return auth.permissions.some((perm:any) => perm.name === name);
     }
 }
 

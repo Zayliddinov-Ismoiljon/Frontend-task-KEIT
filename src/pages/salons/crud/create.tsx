@@ -4,7 +4,6 @@ import PageLayout from "../../../components/layout/page_layout"
 import AvatarUpload from "../../../components/avatar_upload"
 import FormUIBuilder from "../../../components/formUIBuilder"
 import IndexMap from "./index_map"
-import Places from "./places"
 import { useState } from "react"
 
 const SalonCreate : React.FC = () : JSX.Element => {
@@ -62,10 +61,6 @@ const SalonCreate : React.FC = () : JSX.Element => {
       col: 24
     },
   ]
-  
-  // const onFinish = (values:any) => {
-  //   console.log(values)
-  // } 
 
   const [location, setLocation] = useState<{ lat: 41.326158154854866; lng: 69.2935293679735 } | null>(null);
 

@@ -24,7 +24,7 @@ const getAll: TypeGetAll = async ({ url, urlParams, _params }) => {
 
     const response = await instance({ url, method: 'GET', params });
 
-    return response.data['hydra:member'];
+    return response.data;
 
 }
 

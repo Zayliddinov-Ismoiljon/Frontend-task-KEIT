@@ -11,11 +11,13 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/user_slice";
 import BreadCrumb from "../breadcrumb";
+import { useAppSelector } from "../../store";
 
 const Header = () => {
   const {t} = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const about_me = useAppSelector((state) => state?.user?.user);
 
   const handleLogout = () => {
     dispatch(logout())
@@ -39,29 +41,29 @@ const Header = () => {
     {
       key: '3',
       danger: true,
-      label: <button onClick={handleLogout}>{t("Logout")}</button>,
+      label: <button onClick={handleLogout} className="w-full text-start">{t("Logout")}</button>,
     },
   ]; 
 
   const notification_items: MenuProps['items'] = [
     {
         label: <div className="flex items-center hover:text-blue-500">
-            <IoDocumentAttachSharp size={22} color="#C8C8C8"/>
-            <span className="ml-3">Ariza tasdiqlandi</span>
+          <IoDocumentAttachSharp size={22} color="#C8C8C8"/>
+          <span className="ml-3">Ariza tasdiqlandi</span>
         </div>,
         key: '1',
     },
     {
         label: <div className="flex items-center hover:text-blue-500">
-            <IoDocumentAttachSharp size={22} color="#C8C8C8"/>
-            <span className="ml-3">Ariza tasdiqlandi</span>
+          <IoDocumentAttachSharp size={22} color="#C8C8C8"/>
+          <span className="ml-3">Ariza tasdiqlandi</span>
         </div>,
         key: '2',
     },
     {
         label: <div className="flex items-center hover:text-blue-500">
-            <IoDocumentAttachSharp size={22} color="#C8C8C8"/>
-            <span className="ml-3">Ariza tasdiqlandi</span>
+          <IoDocumentAttachSharp size={22} color="#C8C8C8"/>
+          <span className="ml-3">Ariza tasdiqlandi</span>
         </div>,
         key: '3',
     },
@@ -109,8 +111,8 @@ const handleChange = (value: { value: string; label: React.ReactNode }) => {
           <Space className="flex items-center">
             <FaUserCircle size={42} color="#C8C8C8"/>
             <div>
-              <span>Zayliddinov I.</span>
-              <p className="block text-[12px] text-[#8E9BAC]">Barber</p>
+              <span>{about_me?.barber?.first_name} {about_me?.barber?.last_name}</span>
+              <p className="block text-[12px] text-[#8E9BAC]">{about_me?.role?.name}</p>
             </div>
           </Space>
         </Dropdown>

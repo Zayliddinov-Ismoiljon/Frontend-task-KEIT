@@ -13,13 +13,13 @@ const BarbersCreate: React.FC = () : JSX.Element => {
 
     const formUIData: ITypeFormUIBuilder['formUIData'] = [
         {
-            name: 'First name',
+            name: 'first_name',
             type: 'text',
             required: true,
             col: 12
         },
         {
-            name: 'Last name',
+            name: 'last_name',
             type: 'text',
             required: true,
             col: 12
@@ -31,25 +31,25 @@ const BarbersCreate: React.FC = () : JSX.Element => {
             col: 12
         },
         {
-            name: 'Phone',
+            name: 'phone',
             type: 'text',
             required: true,
             col: 12
         },
         {
-            name: 'Email',
+            name: 'email',
             type: 'text',
             required: false,
             col: 12
         },
         {
-            name: 'Telegram',
+            name: 'telegram',
             type: 'text',
             required: false,
-            col: 12
+            col: 12      
         },
         {
-            name: 'Full address',
+            name: 'full_address',
             type: 'textarea',
             required: false,
             col: 24

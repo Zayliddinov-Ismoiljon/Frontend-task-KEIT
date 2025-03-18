@@ -13,8 +13,8 @@ const Barbers: React.FC = () => {
   const {t} = useTranslation()
 
   const { urlValue } = useUrlQueryParams({
-    currentPage: 1,
-    perPage: 10,
+    currentPage: 0,
+    size: 10,
   });
 
   const [searchVal, setSearchVal] = useState<string>("");
@@ -28,33 +28,33 @@ const Barbers: React.FC = () => {
     },
     {
       title: 'First name',
-      dataIndex: 'firstName',
+      dataIndex: 'first_name',
       key: 'id',
-      render: (e) => <span>{e}</span>
+      render: (_, record) => <span>{record?.first_name}</span>
     },
     {
       title: 'Last name',
-      dataIndex: 'lastName',
+      dataIndex: 'last_name',
       key: 'id',
-      render: (e) => <span>{e}</span>
+      render: (_, record) => <span>{record?.last_name}</span>
     },
     {
-      title: 'Passport',
-      dataIndex: 'psJShR',
+      title: 'Gender',
+      dataIndex: 'gender',
       key: 'id',
-      render: (e) => <span>{e}</span>
+      render: (_, record) => <span>{record?.gender}</span>
     },
     {
-      title: 'Passport number',
-      dataIndex: 'psNumer',
+      title: 'Phone',
+      dataIndex: 'phone',
       key: 'id',
-      render: (e) => <span>{e}</span>
+      render: (_, record) => <span>{record?.phone}</span>
     },
     {
-      title: 'Passport serea',
-      dataIndex: 'psSerea',
+      title: 'Email',
+      dataIndex: 'email',
       key: 'id',
-      render: (e) => <span>{e}</span>
+      render: (_, record) => <span>{record?.email}</span>
     },
     {
       title: t("Actions"),
@@ -64,47 +64,38 @@ const Barbers: React.FC = () => {
       render: (i:any,e: any) => (
         <Actions
           id={e?.id}
-          url={'profiles'}
+          url={'barber'}
           refetch={refetch}
           onClickEdit={() => {}}
           onClickView={() => {}}
-          viewPermession={'profiles/view'}
-          editPermession={'profiles/student_update'}
-          deletePermession={'profiles/delete'}
+          viewPermession={'View barber'}
+          editPermession={'Update barber'}
+          deletePermession={'Delete barber'}
         />
       ),
     },
   ];
 
-  const { data: students, isLoading, refetch } = useGetAllData<any>({
-    queryKey: ["profiles", urlValue.perPage, urlValue.currentPage, searchVal],
-    url: "profiles",
-    urlParams: { "PerPage": urlValue.perPage, page: urlValue.currentPage, 'users.role': 'role_student', fullName: searchVal },
+  const { data: barbers, isLoading, refetch } = useGetAllData<any>({
+    queryKey: ["barber", urlValue.perPage, urlValue.currentPage, searchVal],
+    url: "barber",
+    urlParams: { "size": urlValue.perPage, page: urlValue.currentPage, full_name: searchVal },
   });
 
-  const studentsWithKey = students?.map((student: any, index: number) => ({
-    ...student,
-    key: student.id || index, 
+  const barbersWithKey = barbers?.data?.map((barber: any, index: number) => ({
+    ...barber,
+    key: barber.id || index, 
   }));
 
   return(
-    <PageLayout title="Barbers" isButton={false} url="barber-create" create_permession="cost_type/create">
+    <PageLayout title="Barbers" isButton={false} url="barber-create" create_permession="Create barber">
       <Row gutter={[12,12]} className="mb-3">
         <Col span={6}>
           <SearchInput duration={500} setSearchVal={setSearchVal} className="w-full" placeholder="Search by full name ..." />
         </Col>
-        <Col span={6}>
-          <SearchInput duration={500} setSearchVal={setSearchVal} className="w-full" placeholder="Search by passport ..." />
-        </Col>
-        <Col span={6}>
-          <SearchInput duration={500} setSearchVal={setSearchVal} className="w-full" placeholder="Search by passport number ..." />
-        </Col>
-        <Col span={6}>
-          <SearchInput duration={500} setSearchVal={setSearchVal} className="w-full" placeholder="Search by passport serea ..." />
-        </Col>
       </Row>
-      <Table  dataSource={studentsWithKey} columns={columns} loading={isLoading} pagination={false} scroll={{y:500}}/>
-      <CustomPagination totalCount={7000} currentPage={urlValue.currentPage} perPage={urlValue.perPage} />
+      <Table  dataSource={barbersWithKey} columns={columns} loading={isLoading} pagination={false} scroll={{y:500}}/>
+      <CustomPagination totalCount={barbers?.pageable?.total} currentPage={urlValue.currentPage} perPage={urlValue.perPage} />
     </PageLayout>
   )
 }

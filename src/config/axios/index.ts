@@ -10,7 +10,7 @@ const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
     config.baseURL = `${MAIN_URL}`;
 
     config.headers = {
-        'Authorization': "Bearer " + access_token,
+        'Authorization': `Bearer ${access_token}`,
         'Content-Type': 'application/ld+json',
     }
     return config;

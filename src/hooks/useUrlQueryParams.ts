@@ -82,11 +82,11 @@ const serialize = (name: string, value: number | string | undefined) => {
 
 
 
-const useUrlQueryParams = ({ perPage = 15, currentPage }: { perPage?: number, currentPage?: number | undefined }): { urlValue: IStateParams, writeToUrl: TypeWriteToUrl } => {
+const useUrlQueryParams = ({ size = 15, currentPage }: { size?: number, currentPage?: number | undefined }): { urlValue: IStateParams, writeToUrl: TypeWriteToUrl } => {
 
     const navigate = useNavigate();
 
-    const urlValue: IStateParams = React.useMemo(() => deserialize({ _perPage: perPage, _currentPage: currentPage || 1 }), [(deserialize({ _perPage: perPage, _currentPage: currentPage || 1 }))]);
+    const urlValue: IStateParams = React.useMemo(() => deserialize({ _perPage: size, _currentPage: currentPage || 0 }), [(deserialize({ _perPage: size, _currentPage: currentPage || 1 }))]);
 
     // const writeToUrl = React.useCallback(({ name, value, items }: { name: string, value: number | string | undefined, items?: Array<Record<string | number, any>> }) => {
 

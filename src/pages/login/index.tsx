@@ -4,9 +4,7 @@ import { MAIN_URL } from "../../config/utils";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/user_slice";
 import { Link, useNavigate } from "react-router-dom";
-import instance from "../../config/axios";
 import { useTranslation } from "react-i18next";
-import { getAboutMe } from "../../store/about_me";
 import { Notification } from "../../utils/notification";
 import Captcha from "../../assets/images/captcha.png";
 
@@ -19,19 +17,17 @@ const Login = () => {
 
   const onFinish = async (values: any) => {
     try {
-      const response = await axios.post(`${MAIN_URL}/users/auth`, {
-        ...values
+      const response = await axios.post(`${MAIN_URL}auth/login`, {...values},{
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
   
       if (response.status === 200) {
-        dispatch(login(response.data));
+        dispatch(login(response.data?.content));
         navigate('/dashboard');
-        localStorage.setItem('access_token', response.data.accessToken);
+        localStorage.setItem('access_token', response.data.content.token);
         Notification('success', 'login', 'You are successfully logged in!')
-        
-        const url = `/users/about_me`;
-        const about_me = await instance({ url, method: "POST", data: {} });
-        about_me?.data && dispatch(getAboutMe(about_me.data))
       } else {
         message.error(t('An error occurred while logging in. Please try again later'));
       }
@@ -46,7 +42,7 @@ const Login = () => {
       <div className="w-[400px] items-center p-5 shadow-lg rounded-lg mx-auto border border-solid">
         <h3 className="text-lg font-semibold mb-4">{t("Sign in")}</h3>
         <Form form={form} layout="vertical" onFinish={onFinish} className="w-full">
-          <Form.Item name="email" label="Username" rules={[{ required: true }]}>
+          <Form.Item name="username" label="Username" rules={[{ required: true }]}>
             <Input allowClear/>
           </Form.Item>
           <Form.Item name="password" label="Password" rules={[{ required: true }]}>

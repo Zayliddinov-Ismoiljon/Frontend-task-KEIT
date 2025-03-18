@@ -35,17 +35,15 @@ function App() {
       if (token && token?.length) {
         try {
           const response = await instance({
-            url: `${MAIN_URL}/users/about_me`,
-            method: 'POST',
-            data: {},
+            url: `${MAIN_URL}user/profile`,
+            method: 'GET',
             headers: {
               'Authorization': `Bearer ${token}`,
             },
           });
-          dispatch(login(response && response.data));
-          response?.data && dispatch(getAboutMe(response && response?.data))
+          dispatch(login(response && response.data?.content));
+          response?.data && dispatch(getAboutMe(response && response?.data?.content))
         } catch (error) {
-          console.error('User authentication failed', error);
           navigate('/login');
         } finally {
           setLoading(false)
