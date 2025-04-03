@@ -47,7 +47,7 @@ const CarsIndex : React.FC  = () => {
     };
   }).sort((a: any, b: any) => a.order - b.order) || [];
 
-  const { mutate, data:cars,} = usePostAllData<any>({ url: "car-value/all" });
+  const { mutate, data:cars} = usePostAllData<any>({ url: "car-value/all" });
 
   useEffect(() => {
     const sendPostRequest = async () => {
@@ -55,6 +55,8 @@ const CarsIndex : React.FC  = () => {
     };
 
     sendPostRequest();
+
+    refetch ?? sendPostRequest()
   }, [refetch, urlValue.perPage, urlValue.currentPage, searchVal]);
 
   const columns: TableProps<ICars>["columns"] = [
@@ -110,7 +112,7 @@ const CarsIndex : React.FC  = () => {
           <SearchInput duration={500} setSearchVal={setSearchVal} className="w-full" placeholder="Search by car number ..." />
         </Col>
       </Row>
-      <Table  dataSource={cars?.dataSource?.responseList} columns={columns} loading={isLoading} pagination={false} scroll={{y:500}} rowKey={(record:any) => record.objectUUID}/>
+      <Table  dataSource={cars?.dataSource?.responseList} columns={columns} loading={cars ? false : true || isLoading} pagination={false} scroll={{y:500}} rowKey={(record:any) => record.objectUUID}/>
       <CustomPagination totalCount={cars?.dataSource?.page?.totalElements} currentPage={urlValue.currentPage} perPage={urlValue.perPage} />
     </PageLayout>
   )

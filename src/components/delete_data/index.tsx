@@ -32,6 +32,7 @@ const DeleteData: React.FC<TypeDeleteData> = ({ children, className, url, id, re
         if(refetch) refetch();
       } else {
         refetch();
+        window.location.reload()
         if(refetchSecond) refetchSecond()
       }      
     }

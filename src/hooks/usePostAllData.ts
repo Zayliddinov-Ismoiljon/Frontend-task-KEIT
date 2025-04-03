@@ -7,7 +7,7 @@ const usePostAllData = <T = any>({ url, options }: { url: string; options?: any 
     ...options,
   });
 
-  return { ...response };
+  return { ...response, refetch: response.mutate };
 };
 
 export default usePostAllData;
