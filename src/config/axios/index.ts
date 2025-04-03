@@ -5,7 +5,6 @@ import { MAIN_URL } from '../utils';
 let instance = axios.create();
 
 const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
-    const access_token = localStorage.getItem('access_token');
 
     config.baseURL = `${MAIN_URL}`;
 

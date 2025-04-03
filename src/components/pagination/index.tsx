@@ -37,7 +37,7 @@ const CustomPagination: React.FC<TypeCustomPaginationProps> = React.memo(
           onChange={(e) => {
             writeToUrl({ name: "currentPage", value: e });
           }}
-          onShowSizeChange={(e, pageSize) => {
+          onShowSizeChange={(_:any, pageSize) => {
             writeToUrl({ name: "perPage", value: pageSize });
           }}
           showSizeChanger={showSizeChanger}

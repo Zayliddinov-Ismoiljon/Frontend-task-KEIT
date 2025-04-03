@@ -63,7 +63,7 @@ const CarsIndex : React.FC  = () => {
     dataIndex: "id",
     key: "id",
     width: 60,
-    render: (_: any, record: any, index:number) => <span>{index+1}</span>,
+    render: (_: any, __: any, index:number) => <span>{index+1}</span>,
   },
   ...(dynamicColumns ?? []),
   {
