@@ -6,21 +6,16 @@ import { Link, useNavigate } from "react-router-dom";
 import flagEn from "../../assets/images/en.png";
 import flagRu from "../../assets/images/ru.png";
 import flagUz from "../../assets/images/uz.png";
+import flagKo from "../../assets/images/ko.png";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { logout } from "../../store/user_slice";
 import BreadCrumb from "../breadcrumb";
-import { useAppSelector } from "../../store";
 
 const Header = () => {
   const {t} = useTranslation()
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const about_me = useAppSelector((state) => state?.user?.user);
 
   const handleLogout = () => {
-    dispatch(logout())
     navigate('/')
   }
 
@@ -28,13 +23,13 @@ const Header = () => {
     {
       key: '1',
       label: (
-        <Link to={'/my-information'}>{t("My information")}</Link>
+        <Link to={''}>{t("My information")}</Link>
       ),
     },
     {
       key: '2',
       label: (
-        <Link to={'/settings'}>{t("Settings")}</Link>
+        <Link to={''}>{t("Settings")}</Link>
       ),
       icon: '',
     },
@@ -102,6 +97,12 @@ const handleChange = (value: { value: string; label: React.ReactNode }) => {
                 <span className="flex items-center max-sm:text-xs"> <img src={flagRu} alt="flag" className="w-[25px] h-[20px] mr-2" /> RU </span>
               ),
             },
+            {
+              value: "ko",
+              label: (
+                <span className="flex items-center max-sm:text-xs"> <img src={flagKo} alt="flag" className="w-[25px] h-[20px] mr-2" /> KO </span>
+              ),
+            },
           ]}
         />
         <Dropdown menu={{ items : notification_items }} placement="bottom" arrow={{ pointAtCenter: true }} className="mr-3">
@@ -111,8 +112,8 @@ const handleChange = (value: { value: string; label: React.ReactNode }) => {
           <Space className="flex items-center">
             <FaUserCircle size={42} color="#C8C8C8"/>
             <div>
-              <span>{about_me?.barber?.first_name} {about_me?.barber?.last_name}</span>
-              <p className="block text-[12px] text-[#8E9BAC]">{about_me?.role?.name}</p>
+              <span>Zayliddinov Ismoiljon</span>
+              <p className="block text-[12px] text-[#8E9BAC]">Admin</p>
             </div>
           </Space>
         </Dropdown>

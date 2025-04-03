@@ -1,9 +1,5 @@
 import { message } from 'antd';
 import { AxiosError } from 'axios';
-import { QueryClient } from '@tanstack/react-query';
-import store from '../../store';
-import { logout } from '../../store/user_slice';
-const queryClient = new QueryClient();
 
 
 export class ResponseError {
@@ -16,9 +12,6 @@ export class ResponseError {
 
     private errors(response: any) {
         switch (response?.status) {
-            case 401:
-                this[401]();
-                break;
             case 403:
                 this[403]();
                 break;
@@ -28,12 +21,6 @@ export class ResponseError {
             default:
                 this.withoutStatusError()
         }
-    }
-
-    private 401(): void {
-        message.warning("Tasdiqlanmagan foydalanuvchi!");
-        store.dispatch(logout());
-        queryClient.clear();
     }
 
     private 403(): void {

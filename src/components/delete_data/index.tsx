@@ -3,23 +3,22 @@ import { useTranslation } from "react-i18next";
 import { ReactNode, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import checkPermession from "../../utils/check_permession";
 import { delete_data } from "../../services";
 
 type TypeDeleteData = {
   children: ReactNode,
   id: number | string,
   url: string,
-  permission: string,
   refetch: any,
   className?: string,
   placement?: "left" | "right" | "top" | "bottom",
   navigateUrl?: string,
   data?: any,
   refetchSecond?: any,
+  disabled?: boolean
 }
 
-const DeleteData: React.FC<TypeDeleteData> = ({ permission, children, className, url, id, refetch, placement, navigateUrl, data, refetchSecond }) => {
+const DeleteData: React.FC<TypeDeleteData> = ({ children, className, url, id, refetch, placement, navigateUrl, data, refetchSecond, disabled }) => {
   const { t } = useTranslation();
   const navigate = useNavigate()
   const [visible, setVisible] = useState<boolean>(false);
@@ -40,12 +39,11 @@ const DeleteData: React.FC<TypeDeleteData> = ({ permission, children, className,
 
   return (
     <>
-      {checkPermession(permission) ?
         <Tooltip placement={placement ?? "topLeft"} title={t("Delete")}>
-          <span onClick={() => setVisible(true)} className={className ?? "flex-center"}>
+          <span onClick={() => !disabled && setVisible(true)} className={className ?? "flex-center"}>
             {children}
           </span>
-        </Tooltip> : null}
+        </Tooltip>
       <Modal open={visible} footer={null} title={null} closable={false} centered width={416}>
         <div className="justify-center text-center">
           <h5 className="text-[20px] font-bold" >{t("Do you want to delete information?")}</h5>

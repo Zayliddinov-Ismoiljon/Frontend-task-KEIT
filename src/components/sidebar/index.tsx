@@ -21,8 +21,10 @@ const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false); 
 
   useEffect(() => {
-    setSelectedKeys([location.pathname]);
+    const parentPath = sidebar_routes.find(route => location.pathname.startsWith(route.path))?.path;
+    setSelectedKeys(parentPath ? [parentPath, location.pathname] : [location.pathname]);
   }, [location.pathname]);
+  
 
   const toggleSidebar = () => {
     setCollapsed((prev) => !prev); 

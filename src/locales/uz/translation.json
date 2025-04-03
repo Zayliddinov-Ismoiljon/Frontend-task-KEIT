@@ -1,3 +1,17 @@
 {
-    "Dashboard" : "Bosh sahifa"
+    "홈페이지" : "Bosh sahifa",
+    "차량 페이지": "Mashinalar",
+    "차량": "Mashinalar",
+    "추가": "Mashina qo'shish",
+    "차량번호": "Mashina raqami",
+    "차량 년도": "Mashina yili",
+    "차량 모델": "Mashina rusumi",
+    "승객 수용 능력": "Yo'lovchi sig'imi",
+    "등록": "Ro'yxatdan o'tish vaqti",
+    "상태": "Holati",
+    "실행": "Harakatlar",
+    "초기화": "Tozalash",
+    "추가 정보": "Saqlash",
+    "편집": "Tarirlash",
+    "엑셀 다운로드": "Exelga yuklash"
 }

@@ -39,7 +39,15 @@ const getOne: TypeGetOne = async ({ url, _params }) => {
     return data;
 }
 
+type TypePostAll = <T>({ url, data }: { url: string; data: Record<string | number, any> }) => Promise<T>;
+
+const postAll: TypePostAll = async ({ url, data }) => {
+  const response = await instance({ url, method: "POST", data });
+  return response.data;
+};
+
 export const CLIENT_API = {
     getAll,
-    getOne
+    getOne,
+    postAll
 };

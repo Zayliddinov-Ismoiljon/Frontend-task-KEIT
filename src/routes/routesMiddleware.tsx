@@ -3,13 +3,9 @@ import Layout from "../components/layout";
 import { _routes, sidebar_routes } from ".";
 import React, { ReactNode } from "react";
 import NoLayout from "../components/layout/no_layout";
-import { useAppSelector } from "../store";
-import Login from "../pages/login";
-import Home from "../pages/home";
 
 const RoutesMiddleware = () => {
-  const auth = useAppSelector((state) => state?.user);
-
+  const isLoggedIn = true
   const createComponent = (Component: any): ReactNode => {
     return (
       <>
@@ -18,7 +14,7 @@ const RoutesMiddleware = () => {
     );
   };
 
-  if (auth.isLoggedIn === true) {
+  if (isLoggedIn === true) {
     return (
       <Layout>
         <Routes>
@@ -46,8 +42,6 @@ const RoutesMiddleware = () => {
               }
               return <Route key={item?.path} path={item?.path} element={createComponent(item?.component)}/>
           })}
-          <Route path="/" element={<Home />} />
-          <Route path={`*`} element={<Login />} />
         </Routes>
       </NoLayout>
     );

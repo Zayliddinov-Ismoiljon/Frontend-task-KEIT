@@ -1,9 +1,10 @@
 import './styles.css'
+import Logo from '../../assets/images/logo.png'
 const LoadingComponent = () => {
   return (
     <div className="loading-wrapper">
       <div className="loading-circle">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png" alt="Loading" className="loading-image" />
+        <img src={Logo} alt="Loading" className="loading-image" />
       </div>
     </div>
   );
